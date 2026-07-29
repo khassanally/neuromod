@@ -5,12 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Northwick Park Neuromodulation Service — advancing mental and neural health through rTMS, ECT, and tDCS. Join our team of psychiatrists.">
   <title>Northwick Park Neuromodulation Service</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (function () {
+      if (sessionStorage.getItem('npns-authenticated') === 'true') {
+        document.documentElement.classList.add('auth-granted');
+      }
+    })();
+  </script>
+  <script src="auth.js" defer></script>
 </head>
 <body>
+  <div id="auth-gate" class="auth-gate" role="dialog" aria-labelledby="auth-title" aria-modal="true">
+    <div class="auth-gate-panel">
+      <img class="auth-gate-logo" src="assets/cnwl-logo.svg" alt="Central and North West London NHS Foundation Trust" width="160" height="48">
+      <h1 id="auth-title" class="auth-gate-title">Northwick Park Neuromodulation Service</h1>
+      <p class="auth-gate-lead">Enter the password to view this site.</p>
+      <form id="auth-form" class="auth-form">
+        <label class="visually-hidden" for="auth-password">Password</label>
+        <input id="auth-password" class="auth-input" type="password" name="password" autocomplete="current-password" required>
+        <button class="btn btn-primary btn-lg auth-submit" type="submit">Continue</button>
+        <p id="auth-error" class="auth-error" hidden>Incorrect password. Please try again.</p>
+      </form>
+    </div>
+  </div>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="top">
@@ -18,10 +41,6 @@
       <div class="header-branding">
         <a class="logo logo-trust" href="https://www.cnwl.nhs.uk/" target="_blank" rel="noopener noreferrer" aria-label="Central and North West London NHS Foundation Trust">
           <img class="logo-img logo-img-trust" src="assets/cnwl-logo.svg" alt="Central and North West London NHS Foundation Trust" width="150" height="48">
-        </a>
-        <span class="logo-divider" aria-hidden="true"></span>
-        <a class="logo logo-service" href="#top" aria-label="Northwick Park Neuromodulation Service — home">
-          <img class="logo-img logo-img-service" src="logo.jpg" alt="Northwick Park Neuromodulation Service" width="180" height="52" data-fallback="assets/logo.svg">
         </a>
       </div>
       <nav class="nav" aria-label="Primary">
@@ -80,7 +99,7 @@
           <p class="eyebrow">Our mission</p>
           <h2>Improving lives through targeted brain stimulation</h2>
           <p class="section-lead">
-            The Northwick Park Neuromodulation Service sits at the intersection of psychiatry and neuroscience — delivering evidence-based treatments for patients who have not responded adequately to medication or psychological therapies.
+            The CNWL Neuromodulation Service sits at the intersection of psychiatry and neuroscience — delivering evidence-based treatments for patients who have not responded adequately to medication or psychological therapies.
           </p>
         </div>
         <div class="mission-grid">
@@ -134,11 +153,11 @@
             <div class="treatment-badge">Non-invasive</div>
             <h3>rTMS</h3>
             <p class="treatment-full">Repetitive Transcranial Magnetic Stimulation</p>
-            <p>Focal magnetic pulses stimulate targeted cortical regions — typically the dorsolateral prefrontal cortex — to modulate neural circuits involved in mood regulation.</p>
+            <p>We use the Magstim Horizon 3.0 with SimGuide Pro to deliver focal magnetic pulses in order to stimulate targeted cortical regions and modulate neural circuits involved in mood regulation.</p>
             <ul class="treatment-points">
-              <li>Outpatient, awake procedure</li>
-              <li>Daily sessions over 4–6 weeks</li>
               <li>NICE-recommended for treatment-resistant depression</li>
+              <li>Daily sessions over 4–6 weeks</li>
+              <li>Treatment protocols for OCD and Generalised Anxiety Disorder available</li>
             </ul>
             </div>
           </article>
@@ -150,7 +169,7 @@
             <div class="treatment-badge">Established</div>
             <h3>ECT</h3>
             <p class="treatment-full">Electroconvulsive Therapy</p>
-            <p>Available for the management of treatment resistant depression. Other indications for ECT may be considered following discussion with the neuromodulation team.</p>
+            <p>ECT is available for the management of treatment resistant depression. Other indications may be available following discussion with the neuromodulation team.</p>
             <ul class="treatment-points">
               <li>Delivered in a dedicated suite with full monitoring</li>
               <li>Rapid response for acute presentations</li>
@@ -166,7 +185,7 @@
             <div class="treatment-badge">Emerging</div>
             <h3>tDCS</h3>
             <p class="treatment-full">Transcranial Direct Current Stimulation</p>
-            <p>Low-intensity direct current applied via scalp electrodes to gently shift cortical excitability — an accessible, well-tolerated adjunct or standalone treatment.</p>
+            <p>Low-intensity direct current applied via scalp electrodes to gently shift cortical excitability — an accessible, well-tolerated adjunct or standalone treatment. Unlike other devices the PlatoWork tDCS Headset is only available to medical professionals.</p>
             <ul class="treatment-points">
               <li>Portable and minimally invasive</li>
               <li>Suitable for home or clinic-based protocols</li>
@@ -181,10 +200,8 @@
     <section class="section" id="who-we-are">
       <div class="container">
         <div class="section-header">
-           <p class="eyebrow">Who we are
-          </p>
-          <p class="section-lead">Treatments are delivered and monitored by a multi-professional team
-          </p>
+          <p class="eyebrow">Who we are</p>
+          <p class="section-lead">Treatments are delivered and monitored by a multi-professional team</p>
         </div>
         <div class="team-grid">
           <article class="profile-card">
@@ -202,7 +219,7 @@
             </div>
             <h3>Deepti Shah-Armon</h3>
             <p class="profile-role">Clinical Director</p>
-            <p>Local clinical director and experienced clinical psychologist who works with patients with complex needs.</p>
+            <p>Clinical Director and experienced clinical psychologist who works with patients with complex needs.</p>
           </article>
 
           <article class="profile-card">
@@ -210,8 +227,8 @@
               <img class="profile-photo" src="People/Anjali Patel.jpg" alt="Anjali Patel" width="160" height="160" loading="lazy">
             </div>
             <h3>Anjali Patel</h3>
-            <p class="profile-role">Registered Nurse</p>
-            <p>Experienced nurse in older adult and liaison psychiatry, qualified to deliver ECT.</p>
+            <p class="profile-role">ECT Lead Nurse</p>
+            <p>Experienced nurse in older adult and liaison psychiatry. Member of National Association of Lead Nurses.</p>
           </article>
 
           <article class="profile-card">
@@ -219,8 +236,8 @@
               <img class="profile-photo" src="People/Jane Namisi.jpg" alt="Jane Namisi" width="160" height="160" loading="lazy">
             </div>
             <h3>Jane Namisi</h3>
-            <p class="profile-role">ECT Service Lead</p>
-            <p>Experienced older adult nurse, ECT service lead, and our lead rTMS practitioner.</p>
+            <p class="profile-role">rTMS Service Lead</p>
+            <p>Experienced older adult nurse, Neuromodulation service lead, and lead rTMS practitioner.</p>
           </article>
 
           <article class="profile-card">
@@ -237,8 +254,8 @@
               <img class="profile-photo" src="People/Amy Fonseca.jpg" alt="Amy Fonseca" width="160" height="160" loading="lazy">
             </div>
             <h3>Amy Fonseca</h3>
-            <p class="profile-role">Older Adult Matron</p>
-            <p>Experienced rTMS practitioner.</p>
+            <p class="profile-role">rTMS Practitioner</p>
+            <p>Matron in older adults services and experienced rTMS practitioner.</p>
           </article>
 
           <article class="profile-card">
@@ -247,7 +264,7 @@
             </div>
             <h3>Dr Erum Nomani</h3>
             <p class="profile-role">Consultant Psychiatrist</p>
-            <p>Highly expert old age psychiatrist and information governance lead for the service.</p>
+            <p>Old age psychiatrist and information governance lead.</p>
           </article>
 
           <article class="profile-card">
@@ -256,7 +273,7 @@
             </div>
             <h3>Dr Moustafa Okda</h3>
             <p class="profile-role">Consultant Psychiatrist</p>
-            <p>General Adult psychiatrist experienced in crisis intervention.</p>
+            <p>General adult psychiatrist experienced in crisis intervention.</p>
           </article>
 
           <article class="profile-card">
@@ -265,7 +282,7 @@
             </div>
             <h3>Oliver Chan</h3>
             <p class="profile-role">Business Manager</p>
-            <p>Qualified accountant and service business manager, responsible for onboarding psychiatrists requesting practising privileges.</p>
+            <p>Business manager, responsible for onboarding psychiatrists requesting practising privileges.</p>
           </article>
 
           <article class="profile-card">
@@ -283,7 +300,7 @@
             </div>
             <h3>Gail Burrell</h3>
             <p class="profile-role">Operational Manager</p>
-            <p>Qualified occupational therapist and operational manager for the service.</p>
+            <p>Sector lead for local services and operational manager for the service.</p>
           </article>
         </div>
       </div>
@@ -296,7 +313,7 @@
             <p class="eyebrow eyebrow-light">Get started</p>
             <h2>Apply for practising privileges</h2>
             <p>
-              Take the next step towards joining the Northwick Park Neuromodulation Service. We welcome enquiries from psychiatrists interested in expanding their practice into brain stimulation therapies.
+              Take the next step towards joining the CNWL Neuromodulation Service. We welcome enquiries from psychiatrists interested in expanding their practice into brain stimulation therapies.
             </p>
           </div>
           <div class="cta-actions">
@@ -339,11 +356,8 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <div class="footer-logos">
-          <img class="footer-logo footer-logo-trust" src="assets/cnwl-logo.svg" alt="Central and North West London NHS Foundation Trust" width="140" height="44">
-          <img class="footer-logo footer-logo-service" src="logo.jpg" alt="Northwick Park Neuromodulation Service" width="200" height="48" data-fallback="assets/logo.svg">
-        </div>
-        <p>Central and North West London NHS Foundation Trust<br>Northwick Park Hospital, Harrow, HA1 3UJ</p>
+        <img class="footer-logo footer-logo-trust" src="assets/cnwl-logo.svg" alt="Central and North West London NHS Foundation Trust" width="140" height="44">
+        <p>Central and North West London NHS Foundation Trust<br>Neuromodulation Service<br>Northwick Park Hospital, Harrow, HA1 3UJ</p>
       </div>
       <nav class="footer-nav" aria-label="Footer">
         <a href="#about">About</a>

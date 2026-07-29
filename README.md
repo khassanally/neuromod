@@ -43,7 +43,7 @@ Expected files after copying:
 
 The CNWL trust logo is already at `assets/cnwl-logo.svg`. The hero uses a custom light neural-network illustration at `assets/hero-neural.svg`.
 
-Team headshots are expected in `assets/people/` after copying from the `people` subfolder in your NeuroMod directory.
+Team headshots live in the `People/` folder next to `index.html`.
 
 ## Before publishing
 
@@ -60,3 +60,9 @@ Team headshots are expected in `assets/people/` after copying from the `people` 
 - `assets/logo.svg` — Service logo (SVG fallback)
 
 No build step or dependencies required.
+
+## Password protection
+
+The site uses a simple browser password gate (`auth.js`). The password is checked in the browser and remembered for the current tab session only.
+
+This is suitable for casual access control on a static site. It is **not** strong security: anyone with technical knowledge can still view the files directly. For stronger protection, use hosting with server-side authentication (for example HTTP basic auth or an NHS-approved hosting platform).
